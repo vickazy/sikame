@@ -20,6 +20,8 @@
 		<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/daterangepicker.min.css" />
 		<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/bootstrap-colorpicker.min.css" />
+
+		<link rel="stylesheet" href="<?php echo base_url() ?>assets/media/css/dataTables.bootstrap.css" />
 		
 		<!-- text fonts -->
 		<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/fonts.googleapis.com.css" />
@@ -33,21 +35,15 @@
 		<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/ace-skins.min.css" />
 		<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/ace-rtl.min.css" />
 
-		<!--[if lte IE 9]>
-		  <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/ace-ie.min.css" />
-		<![endif]-->
-
 		<!-- inline styles related to this page -->
 
 		<!-- ace settings handler -->
 		<script src="<?php echo base_url() ?>assets/js/ace-extra.min.js"></script>
 
-		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+		<script src="<?php echo base_url() ?>assets/js/jquery-2.1.4.min.js"></script>
+		<script src="<?php echo base_url() ?>assets/media/js/jquery.dataTables.js"></script>
+		<script src="<?php echo base_url() ?>assets/media/js/dataTables.bootstrap.js"></script>
 
-		<!--[if lte IE 8]>
-		<script src="<?php echo base_url() ?>assets/js/html5shiv.min.js"></script>
-		<script src="<?php echo base_url() ?>assets/js/respond.min.js"></script>
-		<![endif]-->
 	</head>
 
 	<body class="no-skin">
@@ -123,18 +119,11 @@
 
 		<!-- basic scripts -->
 
-		<!--[if !IE]> -->
-		<script src="<?php echo base_url() ?>assets/js/jquery-2.1.4.min.js"></script>
-
-		<!-- <![endif]-->
-
-		<!--[if IE]>
-		<script src="<?php echo base_url() ?>assets/js/jquery-1.11.3.min.js"></script>
-		<![endif]-->
 		<script type="text/javascript">
 			if('ontouchstart' in document.documentElement) document.write("<script src='<?php echo base_url() ?>assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
 		<script src="<?php echo base_url() ?>assets/js/bootstrap.min.js"></script>
+
 
 		<!-- page specific plugin scripts -->
 
@@ -146,5 +135,10 @@
 				$this->load->view('js_form');
 			}
 		 ?>
+
+		 <script>
+		<?php if (isset($modal_show)) {echo $modal_show;}?>
+		</script>
+
 	</body>
 </html>

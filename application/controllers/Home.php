@@ -11,6 +11,7 @@ class Home extends CI_Controller {
 	{
 		$data['judul']	= 'HOME';
 		$data['js']		= 'js_table';
+		$data['menu']	= 'home';
 		$data['konten']	= 'admin/tables';
 		$this->load->view('template', $data);
 	}

@@ -1,8 +1,17 @@
 <ul class="nav nav-list">
-	<li class="active">
-		<a href="index.html">
+	<li class="<?php if ($menu == 'home'){echo "active";} ?>">
+		<a href="<?php echo site_url('Home') ?>">
 			<i class="menu-icon fa fa-tachometer"></i>
 			<span class="menu-text"> Dashboard </span>
+		</a>
+
+		<b class="arrow"></b>
+	</li>
+
+	<li class="<?php if ($menu == 'pegawai'){echo "active";} ?>">
+		<a href="<?php echo site_url('Pegawai') ?>">
+			<i class="menu-icon fa fa-user"></i>
+			<span class="menu-text"> Pegawai </span>
 		</a>
 
 		<b class="arrow"></b>
@@ -12,7 +21,7 @@
 		<a href="#" class="dropdown-toggle">
 			<i class="menu-icon fa fa-desktop"></i>
 			<span class="menu-text">
-				Menu 1
+				Menu
 			</span>
 
 			<b class="arrow fa fa-angle-down"></b>
