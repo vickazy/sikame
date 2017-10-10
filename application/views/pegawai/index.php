@@ -1,147 +1,182 @@
-<div class="row">
-  <div class="col-xs-12">
-    <div class="clearfix">
-<?php 
-    if($this->session->flashdata('sukses_tambah') != "") {
-        echo '<div class="alert alert-success alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><strong>Sukses</strong></h4> Data Berhasil Disimpan
-              </div>';
-    }
-?>
-<?php 
-    if($this->session->flashdata('sukses_edit') != "") {
-        echo '<div class="alert alert-success alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><strong>Sukses</strong></h4> Data Berhasil Diedit
-              </div>';
-    }
-?>
-<?php 
-    if($this->session->flashdata('sukses_hapus') != "") {
-        echo '<div class="alert alert-success alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><strong>Sukses</strong></h4> Data Berhasil Dihapus
-              </div>';
-    }
-?>
-<?php 
-    if($this->session->flashdata('gagal_hapus') != "") {
-        echo '<div class="alert alert-danger alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><strong>Gagal</strong></h4> Data Gagal Dihapus
-              </div>';
-    }
-?>
-      <a class="btn btn-primary btn-sm" href="#modal-form" role="button" class="blue" data-toggle="modal">
-        <i class="ace-icon fa fa-plus align-top bigger-125"></i>
-        Tambah Pegawai
-      </a>
-      <br>
-      <div class="pull-right tableTools-container"></div>
-    </div>
-    <div class="table-header">
-      LIST PEGAWAI
-    </div>
-    <div id="table-responsive">
-      <table id="pegawai" class="table table-striped table-bordered table-hover" width="100%">
-        <thead>
-          <tr>
-            <th width="10px">ID</th>
-            <th>Nama Pegawai</th>
-            <th>Alamat</th>
-            <th width="60px">Aksi</th>
-          </tr>
-        </thead>
+<div class="main-content">
+    <div class="main-content-inner">
+        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <a href="<?php echo site_url('Home') ?>">Sistem Informasi Kasir</a>
+                </li>
+                <li class="active">PEGAWAI</li>
+            </ul><!-- /.breadcrumb -->
+        </div>
 
-        <tbody>
-              
-        </tbody>
-      </table>
+        <div class="page-content">
+            <!--Setting-->
+              <?php $this->load->view('setting'); ?>
+            <!--End Setting-->
+
+            <div class="row">
+                <div class="col-xs-12">
+                  <!-- PAGE CONTENT BEGINS -->
+                  <!--KONTEN-->
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="clearfix">
+                                <?php 
+                                    if($this->session->flashdata('sukses_tambah') != "") {
+                                        echo '<div class="alert alert-success alert-dismissable">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                <h4><strong>Sukses</strong></h4> Data Berhasil Disimpan
+                                              </div>';
+                                    }
+                                ?>
+                                <?php 
+                                    if($this->session->flashdata('sukses_edit') != "") {
+                                        echo '<div class="alert alert-success alert-dismissable">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                <h4><strong>Sukses</strong></h4> Data Berhasil Diedit
+                                              </div>';
+                                    }
+                                ?>
+                                <?php 
+                                    if($this->session->flashdata('sukses_hapus') != "") {
+                                        echo '<div class="alert alert-success alert-dismissable">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                <h4><strong>Sukses</strong></h4> Data Berhasil Dihapus
+                                              </div>';
+                                    }
+                                ?>
+                                <?php 
+                                    if($this->session->flashdata('gagal_hapus') != "") {
+                                        echo '<div class="alert alert-danger alert-dismissable">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                                <h4><strong>Gagal</strong></h4> Data Gagal Dihapus
+                                              </div>';
+                                    }
+                                ?>
+                                <a class="btn btn-primary btn-sm" href="#modal-form" role="button" class="blue" data-toggle="modal">
+                                  <i class="ace-icon fa fa-plus align-top bigger-125"></i>
+                                  Tambah Pegawai
+                                </a>
+                                <br>
+                                <div class="pull-right tableTools-container"></div>
+                            </div>
+                            <div class="table-header">
+                                LIST PEGAWAI
+                            </div>
+                            <div id="table-responsive">
+                                <table id="pegawai" class="table table-striped table-bordered table-hover" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th width="10px">ID</th>
+                                            <th>Nama Pegawai</th>
+                                            <th>Alamat</th>
+                                            <th width="60px">Aksi</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                          
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!--END KONTEN-->
+                    <!-- PAGE CONTENT ENDS -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content -->
     </div>
-  </div>
-</div>
+</div><!-- /.main-content -->
 
-                <div id="modal-form" class="modal" tabindex="-1">
-                  <div class="modal-dialog">
-                    <?php echo form_open('Pegawai/tambah'); ?>
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="blue bigger">Tambah Pegawai</h4>
-                      </div>
 
-                      <div class="modal-body">
-                        <div class="row">
-                          <div class="col-xs-12 col-sm-6">
-          
-                            <div class="form-group">
-                              <label>Nama</label>
-                              <div>
+<!--modal-->
+<div id="modal-form" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <?php echo form_open('Pegawai/tambah'); ?>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="blue bigger">Tambah Pegawai</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="form-group">
+                            <label>ID</label>
+                            <div>
+                                <?php $id = $id_p['id_max']; ?>
+                                <input class="form-control" type="text" name="id_pegawai" value="<?php echo $id+1 ?>" readonly/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Nama</label>
+                            <div>
                                 <input class="form-control" type="text" name="nama_pegawai" placeholder="Nama Pegawai" required />
                                 <?php echo form_error('nama_pegawai') ?>
-                              </div>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                              <label>Alamat</label>
-                              <div>
+                        <div class="form-group">
+                            <label>Alamat</label>
+                            <div>
                                 <textarea class="form-control" name="alamat_pegawai" placeholder="Alamat Pegawai" rows="4" required></textarea>
                                 <?php echo form_error('alamat_pegawai') ?>
-                              </div>
                             </div>
+                        </div>
 
-                          </div>
+                    </div>
 
-                           <div class="col-xs-12 col-sm-6">
-
-                            <div class="form-group">
-                              <label>Username</label>
-                              <div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <div>
                                 <input class="form-control" type="text" name="username" placeholder="Username" required/>
                                 <?php echo form_error('username') ?>
-                              </div>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                              <label>Password</label>
-                              <div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <div>
                                 <input class="form-control" type="password" name="password" placeholder="Password" required>
                                 <?php echo form_error('password') ?>
-                              </div>
                             </div>
-                            
-                            <div class="form-group">
-                              <label>Akses</label>
-                              <div>
+                        </div>
+                          
+                        <div class="form-group">
+                            <label>Akses</label>
+                            <div>
                                 <select name="akses_pegawai" class="form-control">
-                                  <option value="">--Pilih Akses--</option>
-                                  <option value="user">User</option>
-                                  <option value="admin">Admin</option>
+                                    <option value="">--Pilih Akses--</option>
+                                    <option value="user">User</option>
+                                    <option value="admin">Admin</option>
                                 </select>
                                 <?php echo form_error('akses_pegawai') ?>
-                              </div>
                             </div>
-
-                          </div>
                         </div>
-                      </div>
-
-                      <div class="modal-footer">
-                        <button class="btn btn-sm" data-dismiss="modal">
-                          <i class="ace-icon fa fa-times"></i>
-                          Batal
-                        </button>
-
-                        <button class="btn btn-sm btn-primary" type="submit">
-                          <i class="ace-icon fa fa-check"></i>
-                          Simpan
-                        </button>
-                      </div>
                     </div>
-                    <?php form_close(); ?>
-                  </div>
                 </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-sm" data-dismiss="modal">
+                    <i class="ace-icon fa fa-times"></i>
+                        Batal
+                </button>
+
+                <button class="btn btn-sm btn-primary" type="submit">
+                    <i class="ace-icon fa fa-check"></i>
+                        Simpan
+                </button>
+            </div>
+        </div>
+        <?php form_close(); ?>
+    </div> 
+</div>
 
 
 <script type="text/javascript">

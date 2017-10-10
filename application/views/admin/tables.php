@@ -1,3 +1,15 @@
+<div class="main-content">
+    <div class="main-content-inner">
+        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li>
+                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <a href="<?php echo site_url('Home') ?>">Sistem Informasi Kasir</a>
+                </li>
+                <li class="active">PEGAWAI</li>
+            </ul><!-- /.breadcrumb -->
+        </div>
+        
 <div class="row">
 	<div class="col-xs-12">
 		<div class="clearfix">
@@ -106,3 +118,10 @@
 		</div>
 	</div>
 </div>
+					<!--END KONTEN-->
+					<!-- PAGE CONTENT ENDS -->
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.page-content -->
+	</div>
+</div><!-- /.main-content -->

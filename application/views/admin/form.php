@@ -1,4 +1,27 @@
-								<!-- PAGE CONTENT BEGINS -->
+<div class="main-content">
+	<div class="main-content-inner">
+		<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+			<ul class="breadcrumb">
+				<li>
+					<i class="ace-icon fa fa-home home-icon"></i>
+					<a href="<?php echo site_url('Home') ?>">Sistem Informasi Kasir</a>
+				</li><li>
+					<i class="ace-icon fa fa-user user-icon"></i>
+					<a href="<?php echo site_url('Pegawai') ?>">PEGAWAI</a>
+				</li>
+				<li class="active">EDIT</li>
+			</ul><!-- /.breadcrumb -->
+		</div>
+
+		<div class="page-content">
+			<!--Setting-->
+				<?php $this->load->view('setting'); ?>
+			<!--End Setting-->
+
+			<div class="row">
+				<div class="col-xs-12">
+					<!-- PAGE CONTENT BEGINS -->
+						<!--KONTEN-->								<!-- PAGE CONTENT BEGINS -->
 								<form class="form-horizontal" role="form">
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Text Field </label>
@@ -1282,3 +1305,10 @@
 										</div>
 									</div>
 								</div><!-- PAGE CONTENT ENDS -->
+								<!--END KONTEN-->
+					<!-- PAGE CONTENT ENDS -->
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.page-content -->
+	</div>
+</div><!-- /.main-content -->

@@ -15,24 +15,6 @@ class Home extends CI_Controller {
 		$data['konten']	= 'admin/tables';
 		$this->load->view('template', $data);
 	}
-
-	public function table()
-	{
-		$data['judul']	= 'TABLE';
-		$data['js']		= 'js_table';			//di load di template.php
-		$data['konten']	= 'admin/tables';		//di load di template.php
-		$this->load->view('template', $data);
-	}
-
-	public function form()
-	{
-		$data['judul']	= 'FORM';
-		$data['js']		= 'js_form';			//di load di template.php
-		$data['konten']	= 'admin/form';			//di load di template.php
-		$this->load->view('template', $data);
-	}
-
-
 }
 
 /* End of file Home.php */

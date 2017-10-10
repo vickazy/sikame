@@ -10,6 +10,11 @@ class M_pegawai extends CI_Model {
 		
 	}
 
+	public function get_id()
+	{
+		return $this->db->query("SELECT MAX(id_pegawai) as id_max FROM pegawai");
+	}
+
 	public function get_all()
 	{
 		return $this->db->get('pegawai');
@@ -24,6 +29,7 @@ class M_pegawai extends CI_Model {
 	public function tambah_proses()
 	{
 		$data = array(
+			'id_pegawai'	=> $this->input->post('id_pegawai'),
 			'nama_pegawai'	=> $this->input->post('nama_pegawai'),
 			'alamat_pegawai'=> $this->input->post('alamat_pegawai'),
 			'akses_pegawai'	=> $this->input->post('akses_pegawai'),
