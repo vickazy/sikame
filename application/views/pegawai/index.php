@@ -1,6 +1,38 @@
 <div class="row">
   <div class="col-xs-12">
     <div class="clearfix">
+<?php 
+    if($this->session->flashdata('sukses_tambah') != "") {
+        echo '<div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><strong>Sukses</strong></h4> Data Berhasil Disimpan
+              </div>';
+    }
+?>
+<?php 
+    if($this->session->flashdata('sukses_edit') != "") {
+        echo '<div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><strong>Sukses</strong></h4> Data Berhasil Diedit
+              </div>';
+    }
+?>
+<?php 
+    if($this->session->flashdata('sukses_hapus') != "") {
+        echo '<div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><strong>Sukses</strong></h4> Data Berhasil Dihapus
+              </div>';
+    }
+?>
+<?php 
+    if($this->session->flashdata('gagal_hapus') != "") {
+        echo '<div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><strong>Gagal</strong></h4> Data Gagal Dihapus
+              </div>';
+    }
+?>
       <a class="btn btn-primary btn-sm" href="#modal-form" role="button" class="blue" data-toggle="modal">
         <i class="ace-icon fa fa-plus align-top bigger-125"></i>
         Tambah Pegawai
