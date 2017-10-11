@@ -218,5 +218,9 @@
         if(!confirm('Anda Yakin?'))e.preventDefault();
     }
 </script>
-
-<?php $this->load->view('js_form'); ?>
+<script src="<?php echo base_url() ?>assets/js/jquery.maskedinput.min.js"></script>
+<script>
+    jQuery(function($) {
+        $('.input-mask-phone').mask('9999-9999-9999');
+    });
+</script>
