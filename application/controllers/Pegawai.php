@@ -54,6 +54,7 @@ class Pegawai extends CI_Controller {
 			$data['menu']		= 'pegawai';
 			$data['js']			= 'js_table';
 			$data['konten']		= 'pegawai/index';
+			$data['id_p']		= $this->M_pegawai->get_id()->row_array();
 			$data['pegawai']	= $this->M_pegawai->get_all()->result();
 			$this->load->view('template', $data);
 		}else{

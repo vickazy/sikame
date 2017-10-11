@@ -6,7 +6,7 @@
                     <i class="ace-icon fa fa-home home-icon"></i>
                     <a href="<?php echo site_url('Home') ?>">Sistem Informasi Kasir</a>
                 </li>
-                <li class="active">PEGAWAI</li>
+                <li class="active">PELANGGAN</li>
             </ul><!-- /.breadcrumb -->
         </div>
 
@@ -56,21 +56,22 @@
                                 ?>
                                 <a class="btn btn-primary btn-sm" href="#modal-form" role="button" class="blue" data-toggle="modal">
                                   <i class="ace-icon fa fa-plus align-top bigger-125"></i>
-                                  Tambah Pegawai
+                                  Tambah Pelanggan
                                 </a>
                                 <br>
                                 <div class="pull-right tableTools-container"></div>
                             </div>
                             <div class="table-header">
-                                LIST PEGAWAI
+                                LIST PELANGGAN
                             </div>
                             <div id="table-responsive">
-                                <table id="pegawai" class="table table-striped table-bordered table-hover" width="100%">
+                                <table id="pelanggan" class="table table-striped table-bordered table-hover" width="100%">
                                     <thead>
                                         <tr>
                                             <th width="10px">ID</th>
-                                            <th>Nama Pegawai</th>
+                                            <th>Nama Pelanggan</th>
                                             <th>Alamat</th>
+                                            <th>Contact Person</th>
                                             <th width="60px">Aksi</th>
                                         </tr>
                                     </thead>
@@ -94,11 +95,11 @@
 <!--modal-->
 <div id="modal-form" class="modal" tabindex="-1">
     <div class="modal-dialog">
-        <?php echo form_open('Pegawai/tambah'); ?>
+        <?php echo form_open('pelanggan/tambah'); ?>
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="blue bigger">Tambah Pegawai</h4>
+                <h4 class="blue bigger">Tambah Pelanggan</h4>
             </div>
 
             <div class="modal-body">
@@ -108,23 +109,30 @@
                             <label>ID</label>
                             <div>
                                 <?php $id = $id_p['id_max']; ?>
-                                <input class="form-control" type="text" name="id_pegawai" value="<?php echo $id+1 ?>" readonly/>
+                                <input class="form-control" type="text" name="id_pelanggan" value="<?php echo $id+1 ?>" readonly/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label>Nama</label>
                             <div>
-                                <input class="form-control" type="text" name="nama_pegawai" placeholder="Nama Pegawai" required />
-                                <?php echo form_error('nama_pegawai') ?>
+                                <input class="form-control" type="text" name="nama_pelanggan" placeholder="Nama pelanggan" required />
+                                <?php echo form_error('nama_pelanggan') ?>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label>Alamat</label>
+                            <label>Contact Person</label>
+                            <small class="text-warning">(9999-9999-9999)</small>
                             <div>
-                                <textarea class="form-control" name="alamat_pegawai" placeholder="Alamat Pegawai" rows="4" required></textarea>
-                                <?php echo form_error('alamat_pegawai') ?>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="ace-icon fa fa-phone"></i>
+                                    </span>
+
+                                    <input class="form-control input-mask-phone" name="cp_pelanggan" type="text" placeholder="CP Pelanggan" id="form-field-mask-2" required />
+                                </div>
+                                <?php echo form_error('cp_pelanggan') ?>
                             </div>
                         </div>
 
@@ -132,30 +140,10 @@
 
                     <div class="col-xs-12 col-sm-6">
                         <div class="form-group">
-                            <label>Username</label>
+                            <label>Alamat</label>
                             <div>
-                                <input class="form-control" type="text" name="username" placeholder="Username" required/>
-                                <?php echo form_error('username') ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Password</label>
-                            <div>
-                                <input class="form-control" type="password" name="password" placeholder="Password" required>
-                                <?php echo form_error('password') ?>
-                            </div>
-                        </div>
-                          
-                        <div class="form-group">
-                            <label>Akses</label>
-                            <div>
-                                <select name="akses_pegawai" class="form-control">
-                                    <option value="">--Pilih Akses--</option>
-                                    <option value="user">User</option>
-                                    <option value="admin">Admin</option>
-                                </select>
-                                <?php echo form_error('akses_pegawai') ?>
+                                <textarea class="form-control" name="alamat_pelanggan" placeholder="Alamat pelanggan" rows="4" required></textarea>
+                                <?php echo form_error('alamat_pelanggan') ?>
                             </div>
                         </div>
                     </div>
@@ -181,12 +169,12 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    $('#pegawai').DataTable({
+    $('#pelanggan').DataTable({
       "processing":true,
       "serverSide":true,
       "lengthMenu":[[5,10,25,50,100,-1],[5,10,25,50,100,"All"]],
       "ajax":{
-        url : "<?php echo site_url('pegawai/data_server') ?>",
+        url : "<?php echo site_url('pelanggan/data_server') ?>",
         type : "POST"
       },
 
@@ -194,24 +182,29 @@
       [
         {
           "targets":0,
-          "data":"id_pegawai",
+          "data":"id_pelanggan",
           "searchable": true,
         },
         {
           "targets":1,
-          "data":"nama_pegawai"
+          "data":"nama_pelanggan"
         },
         {
           "targets":2,
-          "data":"alamat_pegawai",
+          "data":"alamat_pelanggan",
           "searchable": true,
         },
         {
           "targets":3,
+          "data":"cp_pelanggan",
+          "searchable": true,
+        },
+        {
+          "targets":4,
           "data": null,
           "searchable": false,
           "render":function(data,tipe,full,meta){
-            return '<a href="<?php echo site_url("Pegawai/edit/") ?>'+data["id_pegawai"]+'" class="btn btn-success btn-rounded btn-sm"><span class="fa fa-pencil"></span></a>&nbsp;<form action="<?=site_url('Pegawai/hapus/')?>" method="POST" style="display: inline;" accept-charset="utf-8"><input type="text" name="id_pegawai" value='+data["id_pegawai"]+' hidden ><button class="btn btn-danger btn-rounded btn-sm" type="submit" onclick="clicked(event)"><span class="fa fa-trash"></span></button></form>'
+            return '<a href="<?php echo site_url("pelanggan/edit/") ?>'+data["id_pelanggan"]+'" class="btn btn-success btn-rounded btn-sm"><span class="fa fa-pencil"></span></a>&nbsp;<form action="<?=site_url('pelanggan/hapus/')?>" method="POST" style="display: inline;" accept-charset="utf-8"><input type="text" name="id_pelanggan" value='+data["id_pelanggan"]+' hidden ><button class="btn btn-danger btn-rounded btn-sm" type="submit" onclick="clicked(event)"><span class="fa fa-trash"></span></button></form>'
           }
         }
       ],
@@ -225,3 +218,5 @@
         if(!confirm('Anda Yakin?'))e.preventDefault();
     }
 </script>
+
+<?php $this->load->view('js_form'); ?>

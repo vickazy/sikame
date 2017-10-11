@@ -17,6 +17,15 @@
 		<b class="arrow"></b>
 	</li>
 
+	<li class="<?php if ($menu == 'pelanggan'){echo "active";} ?>">
+		<a href="<?php echo site_url('Pelanggan') ?>">
+			<i class="menu-icon fa fa-users"></i>
+			<span class="menu-text"> Pelanggan </span>
+		</a>
+
+		<b class="arrow"></b>
+	</li>
+
 	<li class="">
 		<a href="#" class="dropdown-toggle">
 			<i class="menu-icon fa fa-desktop"></i>
