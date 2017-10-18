@@ -1,22 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
+-- version 4.3.11
+-- http://www.phpmyadmin.net
 --
--- Host: localhost:3307
--- Generation Time: Oct 13, 2017 at 07:31 PM
--- Server version: 5.7.19
--- PHP Version: 7.0.23
+-- Host: 127.0.0.1
+-- Generation Time: Oct 18, 2017 at 03:53 AM
+-- Server version: 10.1.16-MariaDB
+-- PHP Version: 5.6.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `kasir`
@@ -28,7 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `barang`
 --
 
-CREATE TABLE `barang` (
+CREATE TABLE IF NOT EXISTS `barang` (
   `id_barang` int(11) NOT NULL,
   `nama_barang` varchar(45) DEFAULT NULL,
   `ukuran_barang` varchar(255) DEFAULT NULL,
@@ -39,7 +37,7 @@ CREATE TABLE `barang` (
   `id_jenis_barang` int(11) DEFAULT NULL,
   `stok_barang` int(11) NOT NULL,
   `keterangan_barang` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `barang`
@@ -55,10 +53,10 @@ INSERT INTO `barang` (`id_barang`, `nama_barang`, `ukuran_barang`, `material_bar
 -- Table structure for table `desain`
 --
 
-CREATE TABLE `desain` (
+CREATE TABLE IF NOT EXISTS `desain` (
   `id_desain` int(11) NOT NULL,
   `nama_desain` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `desain`
@@ -75,9 +73,9 @@ INSERT INTO `desain` (`id_desain`, `nama_desain`) VALUES
 -- Table structure for table `detail_penjualan`
 --
 
-CREATE TABLE `detail_penjualan` (
+CREATE TABLE IF NOT EXISTS `detail_penjualan` (
   `id_detail_penjualan` int(11) NOT NULL,
-  `no_faktur` int(11) DEFAULT NULL,
+  `no_faktur` varchar(50) DEFAULT NULL,
   `jumlah_penjualan` varchar(10) DEFAULT NULL,
   `jadwal_pengiriman` datetime DEFAULT NULL,
   `tanggal_pengiriman` datetime DEFAULT NULL,
@@ -90,16 +88,28 @@ CREATE TABLE `detail_penjualan` (
 -- Table structure for table `faktur_penjualan`
 --
 
-CREATE TABLE `faktur_penjualan` (
-  `id_faktur` int(11) NOT NULL,
-  `no_faktur` int(11) DEFAULT NULL,
+CREATE TABLE IF NOT EXISTS `faktur_penjualan` (
+  `id_faktur` varchar(50) NOT NULL,
+  `no_faktur` varchar(50) DEFAULT NULL,
   `tanggal_penjualan` date DEFAULT NULL,
   `id_barang` int(11) DEFAULT NULL,
   `jumlah_barang` int(11) DEFAULT NULL,
   `total_bayar` int(11) DEFAULT NULL,
   `id_pelanggan` int(11) DEFAULT NULL,
-  `id_pegawai` int(11) DEFAULT NULL
+  `id_pegawai` int(11) DEFAULT NULL,
+  `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `faktur_penjualan`
+--
+
+INSERT INTO `faktur_penjualan` (`id_faktur`, `no_faktur`, `tanggal_penjualan`, `id_barang`, `jumlah_barang`, `total_bayar`, `id_pelanggan`, `id_pegawai`, `status`) VALUES
+('2017-10-17-1', '2017-10-17--1', '2017-10-17', 1, 50, NULL, 1, 0, 0),
+('2017-10-17-2', '2017-10-17--1', '2017-10-17', 2, 50, NULL, 1, 0, 0),
+('2017-10-17-3', '2017-10-17--1', '2017-10-17', 1, 100, NULL, 1, 0, 0),
+('2017-10-17-4', '2017-10-17--1', '2017-10-17', 2, 300, NULL, 1, 0, 0),
+('2017-10-18-1', '2017-10-18--3', '2017-10-18', 2, 2, NULL, 3, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -107,10 +117,10 @@ CREATE TABLE `faktur_penjualan` (
 -- Table structure for table `jenis_barang`
 --
 
-CREATE TABLE `jenis_barang` (
+CREATE TABLE IF NOT EXISTS `jenis_barang` (
   `id_jenis_barang` int(11) NOT NULL,
   `nama_jenis_barang` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `jenis_barang`
@@ -139,13 +149,13 @@ INSERT INTO `jenis_barang` (`id_jenis_barang`, `nama_jenis_barang`) VALUES
 -- Table structure for table `log_stok`
 --
 
-CREATE TABLE `log_stok` (
+CREATE TABLE IF NOT EXISTS `log_stok` (
   `id_stok_barang` int(11) NOT NULL,
   `id_barang` int(11) DEFAULT NULL,
   `id_pegawai` int(11) DEFAULT NULL,
   `stok_barang` int(11) DEFAULT NULL,
   `tanggal_update` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `log_stok`
@@ -166,7 +176,7 @@ INSERT INTO `log_stok` (`id_stok_barang`, `id_barang`, `id_pegawai`, `stok_baran
 -- Table structure for table `modal`
 --
 
-CREATE TABLE `modal` (
+CREATE TABLE IF NOT EXISTS `modal` (
   `id_modal` int(11) NOT NULL,
   `nama_bahan` varchar(255) NOT NULL,
   `jumlah_bahan` int(11) NOT NULL,
@@ -182,7 +192,7 @@ CREATE TABLE `modal` (
 -- Table structure for table `pegawai`
 --
 
-CREATE TABLE `pegawai` (
+CREATE TABLE IF NOT EXISTS `pegawai` (
   `id_pegawai` int(11) NOT NULL,
   `username` varchar(45) DEFAULT NULL,
   `password` varchar(45) DEFAULT NULL,
@@ -205,12 +215,22 @@ INSERT INTO `pegawai` (`id_pegawai`, `username`, `password`, `nama_pegawai`, `al
 -- Table structure for table `pelanggan`
 --
 
-CREATE TABLE `pelanggan` (
+CREATE TABLE IF NOT EXISTS `pelanggan` (
   `id_pelanggan` int(11) NOT NULL,
   `nama_pelanggan` varchar(255) DEFAULT NULL,
   `alamat_pelanggan` varchar(255) DEFAULT NULL,
-  `cp_pelanggan` varchar(12) DEFAULT NULL
+  `cp_pelanggan` varchar(14) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `pelanggan`
+--
+
+INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `alamat_pelanggan`, `cp_pelanggan`) VALUES
+(1, 'AGUS', 'BJN', '088216816855'),
+(2, 'agus anu', 'bjn', '08888888888'),
+(3, 'agus banu', 'BJN', '8980-8097-86'),
+(4, 'GUS AGUS', 'MALANG', '0807-9786-76');
 
 --
 -- Indexes for dumped tables
@@ -220,9 +240,7 @@ CREATE TABLE `pelanggan` (
 -- Indexes for table `barang`
 --
 ALTER TABLE `barang`
-  ADD PRIMARY KEY (`id_barang`),
-  ADD KEY `id_jenis_barang_idx` (`id_jenis_barang`),
-  ADD KEY `id_desain` (`id_desain`);
+  ADD PRIMARY KEY (`id_barang`), ADD KEY `id_jenis_barang_idx` (`id_jenis_barang`), ADD KEY `id_desain` (`id_desain`);
 
 --
 -- Indexes for table `desain`
@@ -234,18 +252,13 @@ ALTER TABLE `desain`
 -- Indexes for table `detail_penjualan`
 --
 ALTER TABLE `detail_penjualan`
-  ADD PRIMARY KEY (`id_detail_penjualan`),
-  ADD KEY `no_faktur_idx` (`no_faktur`);
+  ADD PRIMARY KEY (`id_detail_penjualan`), ADD KEY `no_faktur_idx` (`no_faktur`);
 
 --
 -- Indexes for table `faktur_penjualan`
 --
 ALTER TABLE `faktur_penjualan`
-  ADD PRIMARY KEY (`id_faktur`),
-  ADD KEY `id_barang_idx` (`id_barang`),
-  ADD KEY `no_faktur` (`no_faktur`),
-  ADD KEY `id_pelanggan_idx` (`id_pelanggan`),
-  ADD KEY `id_pegawai_idx` (`id_pegawai`);
+  ADD PRIMARY KEY (`id_faktur`), ADD KEY `id_barang_idx` (`id_barang`), ADD KEY `no_faktur` (`no_faktur`), ADD KEY `id_pelanggan_idx` (`id_pelanggan`), ADD KEY `id_pegawai_idx` (`id_pegawai`);
 
 --
 -- Indexes for table `jenis_barang`
@@ -257,16 +270,13 @@ ALTER TABLE `jenis_barang`
 -- Indexes for table `log_stok`
 --
 ALTER TABLE `log_stok`
-  ADD PRIMARY KEY (`id_stok_barang`),
-  ADD KEY `id_barang` (`id_barang`),
-  ADD KEY `id_pegawai` (`id_pegawai`);
+  ADD PRIMARY KEY (`id_stok_barang`), ADD KEY `id_barang` (`id_barang`), ADD KEY `id_pegawai` (`id_pegawai`);
 
 --
 -- Indexes for table `modal`
 --
 ALTER TABLE `modal`
-  ADD PRIMARY KEY (`id_modal`),
-  ADD KEY `id_pegawai` (`id_pegawai`);
+  ADD PRIMARY KEY (`id_modal`), ADD KEY `id_pegawai` (`id_pegawai`);
 
 --
 -- Indexes for table `pegawai`
@@ -288,32 +298,27 @@ ALTER TABLE `pelanggan`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `desain`
 --
 ALTER TABLE `desain`
-  MODIFY `id_desain` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `id_desain` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `jenis_barang`
 --
 ALTER TABLE `jenis_barang`
-  MODIFY `id_jenis_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
+  MODIFY `id_jenis_barang` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `log_stok`
 --
 ALTER TABLE `log_stok`
-  MODIFY `id_stok_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
+  MODIFY `id_stok_barang` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `modal`
 --
 ALTER TABLE `modal`
   MODIFY `id_modal` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- Constraints for dumped tables
 --
@@ -322,34 +327,27 @@ ALTER TABLE `modal`
 -- Constraints for table `barang`
 --
 ALTER TABLE `barang`
-  ADD CONSTRAINT `id_desain_ibfk_1` FOREIGN KEY (`id_desain`) REFERENCES `desain` (`id_desain`),
-  ADD CONSTRAINT `jenis_barang_rl` FOREIGN KEY (`id_jenis_barang`) REFERENCES `jenis_barang` (`id_jenis_barang`);
-
---
--- Constraints for table `detail_penjualan`
---
-ALTER TABLE `detail_penjualan`
-  ADD CONSTRAINT `no_faktur` FOREIGN KEY (`no_faktur`) REFERENCES `faktur_penjualan` (`no_faktur`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ADD CONSTRAINT `id_desain_ibfk_1` FOREIGN KEY (`id_desain`) REFERENCES `desain` (`id_desain`),
+ADD CONSTRAINT `jenis_barang_rl` FOREIGN KEY (`id_jenis_barang`) REFERENCES `jenis_barang` (`id_jenis_barang`);
 
 --
 -- Constraints for table `faktur_penjualan`
 --
 ALTER TABLE `faktur_penjualan`
-  ADD CONSTRAINT `id_pegawai` FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id_pegawai`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `id_pelanggan` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ADD CONSTRAINT `id_pegawai` FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id_pegawai`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+ADD CONSTRAINT `id_pelanggan` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `log_stok`
 --
 ALTER TABLE `log_stok`
-  ADD CONSTRAINT `log_stok_ibfk_2` FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id_pegawai`);
+ADD CONSTRAINT `log_stok_ibfk_2` FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id_pegawai`);
 
 --
 -- Constraints for table `modal`
 --
 ALTER TABLE `modal`
-  ADD CONSTRAINT `modal_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id_pegawai`);
-COMMIT;
+ADD CONSTRAINT `modal_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id_pegawai`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
